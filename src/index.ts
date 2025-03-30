@@ -23,8 +23,6 @@ const getAllFromDB = await prisma.post.findMany();
 console.log(getAllFromDB);
 
 
-
-
 }
 
 main();
