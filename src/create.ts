@@ -32,7 +32,7 @@ const main = async () => {
     // Create Category
     // const createCategory = await prisma.category.create({
     //     data: {
-    //         name: "software engineering"
+    //         name: "software engineering 6"
     //     }
     // })
 
@@ -40,45 +40,59 @@ const main = async () => {
 
     // Create post
     const createPost = await prisma.post.create({
-    // data: {
-    //     title: "this is title 5",
-    //         content: "this is content of the post. 5",
-    //             authorId: 3,
-    //                 postCategory: {
-    //         create: [
-    //             {
-    //                 categoryId: 1
-    //             },
-    //             {
-    //                 categoryId: 3
-    //             },
-    //             {
-    //                 categoryId: 4
-    //             }
-    //         ]
-    //     }
-    // },
-    
-    data: {
-        title: "post 1",
-        content: "post 1",
-        authorId: 1,
-        postCategory: {
-            create: {
-                // categoryId: 3
-                category: {
-                    connect: {
-                        id: 1
-                    }
-                }
+        // data: {
+        //     title: "this is title 5",
+        //         content: "this is content of the post. 5",
+        //             authorId: 3,
+        //                 postCategory: {
+        //         create: [
+        //             {
+        //                 categoryId: 1
+        //             },
+        //             {
+        //                 categoryId: 3
+        //             },
+        //             {
+        //                 categoryId: 4
+        //             }
+        //         ]
+        //     }
+        // },
+
+        data: {
+            title: "this is title 5",
+            content: "this is content of this post 5",
+            authorId: 3,
+            // postCategory: {
+            //     create: {
+            //         // categoryId: 3
+            //         category: {
+            //             connect: {
+            //                 id: 1
+            //             }
+            //         }
+            //     }
+            // }
+
+            postCategory: {
+                create: [
+                    {
+                        categoryId: 2
+                    },
+                    {
+                        categoryId: 3
+                    },
+                    {
+                        categoryId: 4
+                    },
+                ]
             }
+        },
+
+        include: {
+            postCategory: true
         }
-    }
-    
-    // include: {
-    //     postCategory: true
-    // }
-})
+    })
     console.log(createPost)
 
 
