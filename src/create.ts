@@ -1,6 +1,6 @@
 
 
-import { PrismaClient, UserRole,  } from "@prisma/client";
+import { PrismaClient, UserRole, } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
@@ -16,24 +16,71 @@ const main = async () => {
     // });
 
     // console.log(createUser);
-    
+
 
     // create profile
-    const createProfile = await prisma.profile.create({
-        data: {
-            bio: "this is bio...",
-            userId: 1
-        }
-    })
+    // const createProfile = await prisma.profile.create({
+    //     data: {
+    //         bio: "this is bio...",
+    //         userId: 1
+    //     }
+    // })
 
-    console.log(createProfile);
-    
+    // console.log(createProfile);
 
+
+    // Create Category
     // const createCategory = await prisma.category.create({
     //     data: {
     //         name: "software engineering"
     //     }
     // })
+
+    // console.log(createCategory);
+
+    // Create post
+    const createPost = await prisma.post.create({
+    // data: {
+    //     title: "this is title 5",
+    //         content: "this is content of the post. 5",
+    //             authorId: 3,
+    //                 postCategory: {
+    //         create: [
+    //             {
+    //                 categoryId: 1
+    //             },
+    //             {
+    //                 categoryId: 3
+    //             },
+    //             {
+    //                 categoryId: 4
+    //             }
+    //         ]
+    //     }
+    // },
+    
+    data: {
+        title: "post 1",
+        content: "post 1",
+        authorId: 1,
+        postCategory: {
+            create: {
+                // categoryId: 3
+                category: {
+                    connect: {
+                        id: 1
+                    }
+                }
+            }
+        }
+    }
+    
+    // include: {
+    //     postCategory: true
+    // }
+})
+    console.log(createPost)
+
 
     // Create many
     // const createPost = await prisma.post.createMany({
@@ -59,30 +106,6 @@ const main = async () => {
     //     ]
     // })
 
-    // const createPost = await prisma.post.create({
-    //     data: {
-    //         title: "this is title 5",
-    //         content: "this is content of the post. 5",
-    //         authorId: 3,
-    //         postCategory: {
-    //             create: [
-    //                 {
-    //                     categoryId: 1
-    //                 },
-    //                 {
-    //                     categoryId: 3
-    //                 },
-    //                 {
-    //                     categoryId: 4
-    //                 }
-    //             ]
-    //         }
-    //     },
-    //     include: {
-    //         postCategory: true
-    //     }
-    // })
-    // console.log(createPost)
 }
 
 main();
