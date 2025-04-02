@@ -17,6 +17,7 @@ model Post {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   author    User     @relation(fields: [authorId], references: [id])
+  postCategory PostCategory[]
 
   @@map("posts")
 }
@@ -28,7 +29,7 @@ model User {
   role     UserRole @default(user)
   age      Int      @default(0)
   post     Post[]
-  profile  Profile?
+  profile  Profile?  // one to one relation
 
   @@map("users")
 }
@@ -42,11 +43,19 @@ model Profile {
   @@map("profiles")
 }
 
+model Category {
+  id           Int            @id @default(autoincrement())
+  name         String
+  postCategory PostCategory[]
+
+  @@map("categories")
+}
+
 model PostCategory {
   postId     Int
   categoryId Int
-  // category   Category @relation(fields: [categoryId], references: [id])
-  // post       Post     @relation(fields: [postId], references: [id])
+  category   Category @relation(fields: [categoryId], references: [id])
+  post       Post     @relation(fields: [postId], references: [id])
 
   @@id([postId, categoryId])
   @@map("post_category")
