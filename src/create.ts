@@ -1,24 +1,33 @@
 
 
-import { PrismaClient,  } from "@prisma/client";
+import { PrismaClient, UserRole,  } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
 const main = async () => {
+
+    // create User
     // const createUser = await prisma.user.create({
     //     data: {
-    //         username: "user2",
-    //         email: "user2@ph.com",
+    //         username: "user1",
+    //         email: "user1@ph.com",
     //         role: UserRole.user
     //     }
     // });
 
-    // const createProfile = await prisma.profile.create({
-    //     data: {
-    //         bio: "this is bio...",
-    //         userId: 1
-    //     }
-    // })
+    // console.log(createUser);
+    
+
+    // create profile
+    const createProfile = await prisma.profile.create({
+        data: {
+            bio: "this is bio...",
+            userId: 1
+        }
+    })
+
+    console.log(createProfile);
+    
 
     // const createCategory = await prisma.category.create({
     //     data: {
@@ -27,28 +36,28 @@ const main = async () => {
     // })
 
     // Create many
-    const createPost = await prisma.post.createMany({
-        data: [
-            {
-                title: "title 1",
-                content: "contant 1",
-                authorName: "author name 1",
-                author: "author 1"
-            },
-            {
-                title: "title 2",
-                content: "contant 2",
-                authorName: "author name 2",
-                author: "author 2"
-            },
-            {
-                title: "title 3",
-                content: "contant 3",
-                authorName: "author name 3",
-                author: "author 3"
-            }
-        ]
-    })
+    // const createPost = await prisma.post.createMany({
+    //     data: [
+    //         {
+    //             title: "title 1",
+    //             content: "contant 1",
+    //             authorName: "author name 1",
+    //             author: "author 1"
+    //         },
+    //         {
+    //             title: "title 2",
+    //             content: "contant 2",
+    //             authorName: "author name 2",
+    //             author: "author 2"
+    //         },
+    //         {
+    //             title: "title 3",
+    //             content: "contant 3",
+    //             authorName: "author name 3",
+    //             author: "author 3"
+    //         }
+    //     ]
+    // })
 
     // const createPost = await prisma.post.create({
     //     data: {
@@ -73,7 +82,7 @@ const main = async () => {
     //         postCategory: true
     //     }
     // })
-    console.log(createPost)
+    // console.log(createPost)
 }
 
 main();
