@@ -56,9 +56,9 @@ const aggregates = async () => {
     
 
     // find min age
-    const minAge = await prisma.post.aggregate({
+    const minAge = await prisma.user.aggregate({
         _min: {
-            authorId: true
+            age: true
         }
     });
 
