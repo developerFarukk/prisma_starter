@@ -8,7 +8,7 @@ const rawQuery = async () => {
     // console.log(posts)
 
     // delete users table data
-    await prisma.$queryRaw`TRUNCATE TABLE "categories" CASCADE`
+    await prisma.$queryRaw`TRUNCATE TABLE "users" CASCADE`
 };
 
 rawQuery();
